@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_0ymd6ut" targetNamespace="http://bpmn.io/schema/bpmn" exporter="bpmn-js (https://demo.bpmn.io)" exporterVersion="10.2.0">
+  <bpmn:process id="Process_1svjv59" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_0ik0yjr" name="Login as SM, then Input Name &#38; Phone Number">
+      <bpmn:outgoing>Flow_1t6u06f</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_1t6u06f" sourceRef="StartEvent_0ik0yjr" targetRef="Gateway_1hy27jj" />
+    <bpmn:exclusiveGateway id="Gateway_1hy27jj" name="Check if already exist">
+      <bpmn:incoming>Flow_1t6u06f</bpmn:incoming>
+      <bpmn:outgoing>Flow_13k67lx</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1vjg4vy</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:endEvent id="Event_1tmlmjz" name="Send error &#34;phone number already registered&#34;">
+      <bpmn:incoming>Flow_13k67lx</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_13k67lx" sourceRef="Gateway_1hy27jj" targetRef="Event_1tmlmjz" />
+    <bpmn:task id="Activity_16mu1ox" name="Send registration link to ASO">
+      <bpmn:incoming>Flow_1vjg4vy</bpmn:incoming>
+      <bpmn:outgoing>Flow_1nnpl8a</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_1vjg4vy" sourceRef="Gateway_1hy27jj" targetRef="Activity_16mu1ox" />
+    <bpmn:endEvent id="Event_0c85h0g" name="ASO received link via WA">
+      <bpmn:incoming>Flow_1nnpl8a</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1nnpl8a" sourceRef="Activity_16mu1ox" targetRef="Event_0c85h0g" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_1svjv59">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_0ik0yjr">
+        <dc:Bounds x="252" y="81" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="159" y="92" width="85" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1hy27jj_di" bpmnElement="Gateway_1hy27jj" isMarkerVisible="true">
+        <dc:Bounds x="245" y="245" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="161" y="263" width="79" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1tmlmjz_di" bpmnElement="Event_1tmlmjz">
+        <dc:Bounds x="462" y="252" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="435" y="295" width="90" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_16mu1ox_di" bpmnElement="Activity_16mu1ox">
+        <dc:Bounds x="220" y="410" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0c85h0g_di" bpmnElement="Event_0c85h0g">
+        <dc:Bounds x="462" y="432" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="436" y="475" width="88" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1t6u06f_di" bpmnElement="Flow_1t6u06f">
+        <di:waypoint x="270" y="117" />
+        <di:waypoint x="270" y="245" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_13k67lx_di" bpmnElement="Flow_13k67lx">
+        <di:waypoint x="295" y="270" />
+        <di:waypoint x="462" y="270" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1vjg4vy_di" bpmnElement="Flow_1vjg4vy">
+        <di:waypoint x="270" y="295" />
+        <di:waypoint x="270" y="410" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1nnpl8a_di" bpmnElement="Flow_1nnpl8a">
+        <di:waypoint x="320" y="450" />
+        <di:waypoint x="462" y="450" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
